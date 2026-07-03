@@ -1,0 +1,7 @@
+openai
+openai-agents
+python-dotenv
+tavily-python
+httpx
+arize-phoenix-otel
+openinference-instrumentation-openai-agents
