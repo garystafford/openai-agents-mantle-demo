@@ -6,33 +6,34 @@ See the accompanying post: [building-agents-openai-agents-bedrock-mantle.md](bui
 
 ## What's in the repo
 
-| Script                                             | Adds                                                                          |
-| -------------------------------------------------- | ----------------------------------------------------------------------------- |
-| [openai-agent-demo-v1.py](openai-agent-demo-v1.py) | Bare `OpenAI` client pointed at the Mantle base URL                           |
-| [openai-agent-demo-v2.py](openai-agent-demo-v2.py) | `Agent` + `Runner` from the Agents SDK (async)                                |
-| [openai-agent-demo-v3.py](openai-agent-demo-v3.py) | Agent-as-tool fact checker, Pydantic structured output, Arize Phoenix tracing |
-| [openai-agent-demo-v4.py](openai-agent-demo-v4.py) | Real tools (Tavily web search, page fetch, current date), reasoning effort    |
-| [openai-agent-demo-v5.py](openai-agent-demo-v5.py) | Input/output guardrails, typed `RunContext`, hard search budget               |
-| [openai-agent-demo-v6.py](openai-agent-demo-v6.py) | Handoffs, triage router, graceful tool-failure handling                       |
+| Script                                                             | Adds                                                                                                 |
+| ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------- |
+| [openai-agent-demo-v1.py](openai-agent-demo-v1.py)                 | Bare `OpenAI` client pointed at the Mantle base URL                                                  |
+| [openai-agent-demo-v2.py](openai-agent-demo-v2.py)                 | `Agent` + `Runner` from the Agents SDK (async)                                                       |
+| [openai-agent-demo-v2-tracing.py](openai-agent-demo-v2-tracing.py) | Variant of v2 with a custom `TracingProcessor` that prints spans to the terminal (no Phoenix/Docker) |
+| [openai-agent-demo-v3.py](openai-agent-demo-v3.py)                 | Agent-as-tool fact checker, Pydantic structured output, Arize Phoenix tracing                        |
+| [openai-agent-demo-v4.py](openai-agent-demo-v4.py)                 | Real tools (Tavily web search, page fetch, current date), reasoning effort                           |
+| [openai-agent-demo-v5.py](openai-agent-demo-v5.py)                 | Input/output guardrails, typed `RunContext`, hard search budget                                      |
+| [openai-agent-demo-v6.py](openai-agent-demo-v6.py)                 | Handoffs, triage router, graceful tool-failure handling                                              |
 
-The capabilities are cumulative: each version retains everything before it and adds one row. The staircase of checkmarks shows where each feature enters, and the final row shows where the system becomes an agent.
+The capabilities are cumulative: each version retains everything before it and adds one row. The staircase of checkboxes shows where each feature enters, and the final row shows where the system becomes an agent.
 
 | Capability                              | v1  | v2  | v3  | v4  | v5  | v6  |
 | --------------------------------------- | :-: | :-: | :-: | :-: | :-: | :-: |
 | Agents                                  |  0  |  1  |  2  |  2  |  2  |  4  |
 | Lines of code                           | 24  | 32  | 107 | 236 | 361 | 432 |
-| Agents SDK framework (`Agent`/`Runner`) |     |  ✓  |  ✓  |  ✓  |  ✓  |  ✓  |
-| Multiple agents                         |     |     |  ✓  |  ✓  |  ✓  |  ✓  |
-| Structured output (Pydantic)            |     |     |  ✓  |  ✓  |  ✓  |  ✓  |
-| Streaming                               |     |     |  ✓  |  ✓  |  ✓  |  ✓  |
-| Tracing (Phoenix)                       |     |     |  ✓  |  ✓  |  ✓  |  ✓  |
-| Tools (web search, fetch, date)         |     |     |     |  ✓  |  ✓  |  ✓  |
-| Reasoning effort                        |     |     |     |  ✓  |  ✓  |  ✓  |
-| Guardrails (input/output)               |     |     |     |     |  ✓  |  ✓  |
-| Typed run context + search budget       |     |     |     |     |  ✓  |  ✓  |
-| Handoffs + triage router                |     |     |     |     |     |  ✓  |
-| Tool failure handling                   |     |     |     |     |     |  ✓  |
-| **Agent** (model-authored control flow) |  ✗  |  ✗  |  ✗  |  ✓  |  ✓  |  ✓  |
+| Agents SDK framework (`Agent`/`Runner`) |     | ✅  | ✅  | ✅  | ✅  | ✅  |
+| Multiple agents                         |     |     | ✅  | ✅  | ✅  | ✅  |
+| Structured output (Pydantic)            |     |     | ✅  | ✅  | ✅  | ✅  |
+| Streaming                               |     |     | ✅  | ✅  | ✅  | ✅  |
+| Tracing (Phoenix)                       |     |     | ✅  | ✅  | ✅  | ✅  |
+| Tools (web search, fetch, date)         |     |     |     | ✅  | ✅  | ✅  |
+| Reasoning effort                        |     |     |     | ✅  | ✅  | ✅  |
+| Guardrails (input/output)               |     |     |     |     | ✅  | ✅  |
+| Typed run context + search budget       |     |     |     |     | ✅  | ✅  |
+| Handoffs + triage router                |     |     |     |     |     | ✅  |
+| Tool failure handling                   |     |     |     |     |     | ✅  |
+| **Agent** (model-authored control flow) | ❌  | ❌  | ❌  | ✅  | ✅  | ✅  |
 
 ## Prerequisites
 

@@ -1,0 +1,11 @@
+services:
+  phoenix:
+    image: arizephoenix/phoenix:latest
+    restart: unless-stopped
+    ports:
+      - "6006:6006"
+    volumes:
+      - phoenix_data:/mnt/data
+
+volumes:
+  phoenix_data:
