@@ -81,3 +81,12 @@ python openai-agent-demo-v1.py
 ```
 
 Each script is a standalone entry point — start at v1 and work up.
+
+## Optional: render Markdown output in the terminal
+
+The agent responses are printed in Markdown format. For a nicer terminal reading experience, you can pipe the output through [glow](https://github.com/charmbracelet/glow):
+
+```bash
+brew install glow
+python openai-agent-demo-v6.py | glow -
+```
