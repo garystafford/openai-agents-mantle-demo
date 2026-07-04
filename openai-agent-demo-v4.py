@@ -36,7 +36,7 @@ MAX_TURNS = 25
 # doesn't also try to upload traces to openai.com in parallel.
 set_trace_processors([])
 tracer_provider = register(
-    project_name="litellm-proxy-demo",
+    project_name="openai-agents-mantle-demo",
     endpoint="http://localhost:6006/v1/traces",
     batch=True,  # BatchSpanProcessor instead of the default SimpleSpanProcessor
     verbose=False,  # suppress the startup OpenTelemetry details banner
