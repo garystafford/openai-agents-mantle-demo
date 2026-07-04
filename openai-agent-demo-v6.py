@@ -430,4 +430,4 @@ if __name__ == "__main__":
     # "Are UFOs real?" routes to the Q&A Agent (factual → fact-checked).
     # "Write a haiku about autumn." routes to the Creative Agent (no facts).
     # A prompt under 10 chars (e.g. "why?") trips the input guardrail.
-    asyncio.run(main("Write a haiku about Autumn."))
+    asyncio.run(main("Are UFOs real?"))
