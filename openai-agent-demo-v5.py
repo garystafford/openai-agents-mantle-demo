@@ -14,6 +14,8 @@ from agents import (
     OutputGuardrailTripwireTriggered,
     RunContextWrapper,
     Runner,
+    TracingProcessor,
+    add_trace_processor,
     function_tool,
     input_guardrail,
     output_guardrail,
@@ -24,6 +26,7 @@ from dotenv import load_dotenv
 from openai import AsyncOpenAI
 from openai.types.shared import Reasoning
 from openinference.instrumentation.openai_agents import OpenAIAgentsInstrumentor
+from opentelemetry import trace as trace_api
 from phoenix.otel import register
 from pydantic import BaseModel
 from tavily import TavilyClient
@@ -38,18 +41,45 @@ set_default_openai_client(client, use_for_tracing=False)
 
 MAX_TURNS = 25
 SEARCH_BUDGET = 5
+PHOENIX_PROJECT_NAME = "openai-agents-mantle-demo"
+DEMO_SCRIPT = "v5"
+
+
+class DemoScriptSpanProcessor(TracingProcessor):
+    def __init__(self, script: str):
+        self.script = script
+
+    def on_trace_start(self, trace) -> None:
+        pass
+
+    def on_trace_end(self, trace) -> None:
+        pass
+
+    def on_span_start(self, span) -> None:
+        current_span = trace_api.get_current_span()
+        current_span.set_attribute("demo.script", self.script)
+
+    def on_span_end(self, span) -> None:
+        pass
+
+    def shutdown(self) -> None:
+        pass
+
+    def force_flush(self) -> None:
+        pass
 
 # Keep SDK tracing enabled — OpenAIAgentsInstrumentor listens on that pipeline
 # and re-emits spans to Phoenix. Clear the default processors so the SDK
 # doesn't also try to upload traces to openai.com in parallel.
 set_trace_processors([])
 tracer_provider = register(
-    project_name="openai-agents-mantle-demo",
+    project_name=PHOENIX_PROJECT_NAME,
     endpoint="http://localhost:6006/v1/traces",
     batch=True,  # BatchSpanProcessor instead of the default SimpleSpanProcessor
     verbose=False,  # suppress the startup OpenTelemetry details banner
 )
 OpenAIAgentsInstrumentor().instrument(tracer_provider=tracer_provider)
+add_trace_processor(DemoScriptSpanProcessor(DEMO_SCRIPT))
 
 
 tavily_client = TavilyClient(api_key=os.environ["TAVILY_API_KEY"])
