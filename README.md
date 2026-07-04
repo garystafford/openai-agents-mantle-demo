@@ -2,6 +2,10 @@
 
 A question-answering agent built with the [OpenAI Agents SDK](https://github.com/openai/openai-agents-python) against [Amazon Bedrock Mantle](https://aws.amazon.com/bedrock/)'s OpenAI-compatible endpoint, developed incrementally across six versions.
 
+![Screengrab #1](./screengrabs/screengrab_1.png)
+
+![Screengrab #2](./screengrabs/screengrab_2.png)
+
 ## What's in the repo
 
 | Script                                                             | Adds                                                                                                 |
