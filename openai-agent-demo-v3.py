@@ -52,6 +52,7 @@ class DemoScriptSpanProcessor(TracingProcessor):
     def force_flush(self) -> None:
         pass
 
+
 # Keep SDK tracing enabled — OpenAIAgentsInstrumentor listens on that pipeline
 # and re-emits spans to Phoenix. Clear the default processors so the SDK
 # doesn't also try to upload traces to openai.com in parallel.

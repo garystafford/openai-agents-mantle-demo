@@ -23,7 +23,7 @@ The capabilities are cumulative: each version retains everything before it and a
 | Capability                              | v1  | v2  | v3  | v4  | v5  | v6  |
 | --------------------------------------- | :-: | :-: | :-: | :-: | :-: | :-: |
 | Agents                                  |  0  |  1  |  2  |  2  |  2  |  4  |
-| Lines of code                           | 24  | 32  | 107 | 236 | 361 | 432 |
+| Lines of code                           | 24  | 32  | 144 | 267 | 392 | 464 |
 | Agents SDK framework (`Agent`/`Runner`) |     | ✅  | ✅  | ✅  | ✅  | ✅  |
 | Multiple agents                         |     |     | ✅  | ✅  | ✅  | ✅  |
 | Structured output (Pydantic)            |     |     | ✅  | ✅  | ✅  | ✅  |
