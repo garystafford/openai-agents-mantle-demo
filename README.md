@@ -93,4 +93,5 @@ The agent responses are printed in Markdown format. For a nicer terminal reading
 ```bash
 brew install glow
 python openai-agent-demo-v6.py | glow -
+python openai-agent-demo-v6.py | glow -w 120
 ```

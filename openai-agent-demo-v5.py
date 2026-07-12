@@ -317,6 +317,9 @@ qa_agent = Agent[RunContext](
         "the final answer is."
     ),
     model="openai.gpt-5.4",
+    model_settings=ModelSettings(
+        reasoning=Reasoning(effort="medium", summary="auto"),
+    ),
     tools=[current_date, fact_check],
     input_guardrails=[prompt_length_guardrail],
     output_guardrails=[answer_quality_guardrail],

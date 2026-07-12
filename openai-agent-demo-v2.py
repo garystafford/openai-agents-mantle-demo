@@ -1,9 +1,16 @@
 import asyncio
 import os
 
-from agents import Agent, Runner, set_default_openai_client, set_tracing_disabled
+from agents import (
+    Agent,
+    ModelSettings,
+    Runner,
+    set_default_openai_client,
+    set_tracing_disabled,
+)
 from dotenv import load_dotenv
 from openai import AsyncOpenAI
+from openai.types.shared import Reasoning
 
 load_dotenv()
 
@@ -19,6 +26,9 @@ set_tracing_disabled(True)
 agent = Agent(
     name="Q&A Agent",
     model="openai.gpt-5.5",
+    model_settings=ModelSettings(
+        reasoning=Reasoning(effort="medium", summary="auto"),
+    ),
     instructions="You answer questions clearly and concisely.",
 )
 

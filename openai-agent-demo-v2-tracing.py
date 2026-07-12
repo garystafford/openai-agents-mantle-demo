@@ -5,6 +5,7 @@ from typing import Any
 
 from agents import (
     Agent,
+    ModelSettings,
     Runner,
     set_default_openai_client,
     set_trace_processors,
@@ -12,6 +13,7 @@ from agents import (
 from agents.tracing import Span, Trace, TracingProcessor
 from dotenv import load_dotenv
 from openai import AsyncOpenAI
+from openai.types.shared import Reasoning
 
 load_dotenv()
 
@@ -78,6 +80,9 @@ set_trace_processors([ConsoleTracingProcessor()])
 agent = Agent(
     name="Q&A Agent",
     model="openai.gpt-5.5",
+    model_settings=ModelSettings(
+        reasoning=Reasoning(effort="medium", summary="auto"),
+    ),
     instructions="You answer questions clearly and concisely.",
 )
 

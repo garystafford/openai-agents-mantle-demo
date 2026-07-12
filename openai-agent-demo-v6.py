@@ -338,6 +338,9 @@ qa_agent = Agent[RunContext](
         "the final answer is."
     ),
     model="openai.gpt-5.4",
+    model_settings=ModelSettings(
+        reasoning=Reasoning(effort="medium", summary="auto"),
+    ),
     tools=[current_date, fact_check],
     output_guardrails=[answer_quality_guardrail],
     output_type=QAAnswer,
@@ -357,6 +360,9 @@ creative_agent = Agent[RunContext](
         "not fact-check; these tasks have no factual claims to verify."
     ),
     model="openai.gpt-5.4",
+    model_settings=ModelSettings(
+        reasoning=Reasoning(effort="medium", summary="auto"),
+    ),
 )
 
 
@@ -372,6 +378,9 @@ triage_agent = Agent[RunContext](
         "prefer the Q&A Agent. Always hand off; never answer directly."
     ),
     model="openai.gpt-5.4",
+    model_settings=ModelSettings(
+        reasoning=Reasoning(effort="medium", summary="auto"),
+    ),
     # tool_name_override keeps the generated transfer tool names valid —
     # the SDK derives them from agent names, and "Q&A Agent" has chars
     # ("&", space) that aren't allowed in function-call tool names.

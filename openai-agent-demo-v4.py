@@ -225,6 +225,7 @@ qa_agent = Agent(
         "fact_check cited in its notes."
     ),
     model="openai.gpt-5.4",
+    model_settings=ModelSettings(reasoning=Reasoning(effort="medium")),
     tools=[current_date, fact_check],
     output_type=QAAnswer,
 )

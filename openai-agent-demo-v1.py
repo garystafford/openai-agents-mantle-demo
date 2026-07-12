@@ -14,6 +14,7 @@ client = OpenAI(
 def ask(prompt: str) -> str:
     response = client.responses.create(
         model="openai.gpt-5.5",
+        reasoning={"effort": "medium"},
         instructions="You answer questions clearly and concisely.",
         input=prompt,
     )

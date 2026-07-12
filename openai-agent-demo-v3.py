@@ -4,6 +4,7 @@ from typing import Literal
 
 from agents import (
     Agent,
+    ModelSettings,
     Runner,
     TracingProcessor,
     add_trace_processor,
@@ -12,6 +13,7 @@ from agents import (
 )
 from dotenv import load_dotenv
 from openai import AsyncOpenAI
+from openai.types.shared import Reasoning
 from openinference.instrumentation.openai_agents import OpenAIAgentsInstrumentor
 from opentelemetry import trace as trace_api
 from phoenix.otel import register
@@ -82,6 +84,9 @@ class FactCheck(BaseModel):
 fact_checker = Agent(
     name="Fact checker",
     model="openai.gpt-5.5",
+    model_settings=ModelSettings(
+        reasoning=Reasoning(effort="medium", summary="auto"),
+    ),
     instructions=(
         "You verify factual claims. Given one or more claims, judge each "
         "against well-established facts. Return a single FactCheck: "
@@ -97,6 +102,9 @@ fact_checker = Agent(
 qa_agent = Agent(
     name="Q&A Agent",
     model="openai.gpt-5.4",
+    model_settings=ModelSettings(
+        reasoning=Reasoning(effort="medium", summary="auto"),
+    ),
     instructions=(
         "You answer questions clearly and concisely. Before finalizing an "
         "answer, call the fact_check tool with the specific factual claims "
